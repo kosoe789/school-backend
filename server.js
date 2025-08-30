@@ -1,4 +1,4 @@
-// server.js (FINAL PRODUCTION-READY VERSION)
+// server.js (FINAL PRODUCTION-READY VERSION - CORRECTED)
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -60,6 +60,7 @@ app.get('/', (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  // CORRECTED THE CONSOLE LOG SYNTAX
-  console.log(Server is running on port ${PORT});
+  // CORRECTED THE CONSOLE LOG SYNTAX TO USE BACKTICKS (`)
+  console.log(`Server is running on port ${PORT}`);
 });
+
