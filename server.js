@@ -1,4 +1,4 @@
-// server.js (FINAL PRODUCTION-READY VERSION - CORRECTED)
+// server.js (CORRECTED FOR CORS TEST)
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,27 +11,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ======================= FINAL CORS FIX =======================
-// Define which URLs are allowed to connect to this backend
-const allowedOrigins = [
-    'http://localhost:3000',                 // For local React development
-    'https://school-admin-portal.onrender.com' // Your LIVE frontend URL
-];
-
-app.use(cors({
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps, Postman, or curl requests)
-        if (!origin) return callback(null, true);
-        
-        // If the origin is in our allowed list, allow it.
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    }
-}));
-// ============================================================
+// ======================= TEMPORARY CORS FIX =======================
+// This allows requests from ANY origin. It's for testing.
+app.use(cors());
+// ================================================================
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -63,4 +46,3 @@ app.listen(PORT, () => {
   // CORRECTED THE CONSOLE LOG SYNTAX TO USE BACKTICKS (`)
   console.log(`Server is running on port ${PORT}`);
 });
-
